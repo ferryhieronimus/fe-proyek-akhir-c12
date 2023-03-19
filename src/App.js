@@ -1,6 +1,7 @@
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Home from "./components/Home";
+import ListBookComponent from "./components/ListBookComponent";
 import RootLayout from "./layouts/RootLayout";
 import ProtectedRoute from "./components/ProtectedRoute";
 import {
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
       />
       <Route path='/login' element={<SignIn />} />
       <Route path='/signup' element={<SignUp />} />
+      <Route path='/books' element={<ListBookComponent />} />
     </Route>
   )
 );
