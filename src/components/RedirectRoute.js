@@ -4,11 +4,11 @@ import { UserContext } from '../layouts/RootLayout';
 import { useContext } from "react";
 
 
-export default function ProtectedRoute ({ children }) {
+export default function RedirectRoute ({ children }) {
     const user = useContext(UserContext);
 
-    if (!user) {
-      return <Navigate to="/login" replace />;
+    if (user) {
+      return <Navigate to="/" replace />;
     }
   
     return children;

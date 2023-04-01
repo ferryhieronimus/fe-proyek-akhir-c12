@@ -14,6 +14,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link as NavLink } from "react-router-dom";
 import LoginService from "../services/LoginService";
+import Cookies from 'js-cookie'
 
 function Copyright(props) {
   return (
@@ -44,6 +45,8 @@ export default function SignIn() {
         email: data.get("email"),
         password: data.get("password"),
       });
+      Cookies.set("token", JSON.stringify(user.token));
+      window.location.reload();
       alert("BERHASIL");
     } catch (error) {
       alert(error.response.data.message);

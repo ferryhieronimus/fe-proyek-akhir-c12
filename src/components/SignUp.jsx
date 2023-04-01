@@ -43,8 +43,8 @@ export default function SignUp() {
     const data = new FormData(event.currentTarget);
     try {
       const user = await SignUpService.signup({
-        firstname: data.get("firstname"),
-        lastname: data.get("lastname"),
+        firstname: data.get("firstName"),
+        lastname: data.get("lastName"),
         email: data.get("email"),
         password: data.get("password"),
         role: radioValue
