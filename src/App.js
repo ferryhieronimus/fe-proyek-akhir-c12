@@ -6,12 +6,17 @@ import CreateBook from "./components/Books/CreateBook";
 import ViewBook from "./components/Books/ViewBook";
 import RootLayout from "./layouts/RootLayout";
 import ProtectedRoute from "./components/ProtectedRoute";
+import RedirectRoute from "./components/RedirectRoute";
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
 } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ChakraProvider } from "@chakra-ui/react";
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,13 +24,27 @@ const router = createBrowserRouter(
       <Route
         path='/'
         element={
-          <ProtectedRoute user={null}>
+          <ProtectedRoute>
             <Home />
           </ProtectedRoute>
         }
       />
-      <Route path='/login' element={<SignIn />} />
-      <Route path='/signup' element={<SignUp />} />
+      <Route
+        path='/login'
+        element={
+          <RedirectRoute>
+            <SignIn />
+          </RedirectRoute>
+        }
+      />
+      <Route
+        path='/signup'
+        element={
+          <RedirectRoute>
+            <SignUp />
+          </RedirectRoute>
+        }
+      />
       <Route path='/books' element={<Books />} />
       <Route path='/add-book/:id' element={<CreateBook />} />
       <Route path='/view-book/:id' element={<ViewBook />} />
@@ -34,7 +53,13 @@ const router = createBrowserRouter(
 );
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <ChakraProvider>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </ChakraProvider>
+  );
 };
 
 export default App;
