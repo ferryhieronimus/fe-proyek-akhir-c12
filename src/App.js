@@ -1,7 +1,9 @@
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Home from "./components/Home";
-import ListBookComponent from "./components/ListBookComponent";
+import Books from "./components/Books/Books";
+import CreateBook from "./components/Books/CreateBook";
+import ViewBook from "./components/Books/ViewBook";
 import RootLayout from "./layouts/RootLayout";
 import ProtectedRoute from "./components/ProtectedRoute";
 import {
@@ -24,7 +26,9 @@ const router = createBrowserRouter(
       />
       <Route path='/login' element={<SignIn />} />
       <Route path='/signup' element={<SignUp />} />
-      <Route path='/books' element={<ListBookComponent />} />
+      <Route path='/books' element={<Books />} />
+      <Route path='/add-book/:id' element={<CreateBook />} />
+      <Route path='/view-book/:id' element={<ViewBook />} />
     </Route>
   )
 );

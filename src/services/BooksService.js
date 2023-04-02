@@ -3,8 +3,24 @@ import axios from "axios";
 const BOOKS_API_URL = "http://localhost:8080/api/v1/books";
 
 class BooksService {
-    getBooks(){
+    getBook(){
         return axios.get(BOOKS_API_URL);
+    }
+
+    createBook(book){
+        return axios.post(BOOKS_API_URL, book)
+    }
+
+    getBookById(bookId){
+        return axios.get(BOOKS_API_URL + '/' + bookId)
+    }
+
+    updateBook(book, bookId){
+        return axios.put(BOOKS_API_URL + '/' + bookId, book);
+    }
+
+    deleteBook(bookId){
+        return axios.delete(BOOKS_API_URL + '/' + bookId)
     }
 }
 
