@@ -18,11 +18,13 @@ class CreateBookComponent extends Component {
             id: id,
             author: '',
             title: '',
+            genre: '',
             location: ''
         }
 
         this.changeAuthorHandler = this.changeAuthorHandler.bind(this);
         this.changeTitleHandler = this.changeTitleHandler.bind(this);
+        this.changeGenreHandler = this.changeGenreHandler.bind(this);
         this.changeLocationHandler = this.changeLocationHandler.bind(this);
         this.saveBook = this.saveBook.bind(this)
     }
@@ -36,6 +38,7 @@ class CreateBookComponent extends Component {
                 this.setState({
                     author: book.author,
                     title: book.title,
+                    genre: book.genre,
                     location: book.location
                 });
             });
@@ -44,7 +47,12 @@ class CreateBookComponent extends Component {
 
     saveBook = (e) => {
         e.preventDefault();
-        let book = {author: this.state.author, title: this.state.title, location: this.state.location};
+        let book = {author: this.state.author, title: this.state.title, genre: this.state.genre , location: this.state.location};
+        if (!( book.genre instanceof Array)){
+            let listGenre  = book.genre.split(',');
+            book.genre = listGenre
+        } 
+
         console.log('book =>' + JSON.stringify(book));
 
         if(this.state.id === '_add'){
@@ -68,6 +76,10 @@ class CreateBookComponent extends Component {
 
     changeLocationHandler= (event) => {
         this.setState({location: event.target.value});
+    }
+
+    changeGenreHandler= (event) => {
+        this.setState({genre: event.target.value});
     }
 
     getTitle(){
@@ -99,6 +111,11 @@ class CreateBookComponent extends Component {
                                             <label> Title: </label>
                                             <input placeholder="Title" name="title" className="form-control" 
                                                 value={this.state.title} onChange={this.changeTitleHandler}/>
+                                        </div>
+                                        <div className = "form-group">
+                                            <label> Genre: </label>
+                                            <input placeholder="Genre" name="genre" className="form-control" 
+                                                value={this.state.genre} onChange={this.changeGenreHandler}/>
                                         </div>
                                         <div className = "form-group">
                                             <label> Location: </label>
