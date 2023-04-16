@@ -29,6 +29,7 @@ class ViewBook extends Component {
         })
     }
 
+
     render() {
         return (
             <div>
@@ -43,6 +44,18 @@ class ViewBook extends Component {
                         <div className = "row">
                             <label> Book's Title  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; </label>
                             <div> { this.state.book.title }</div>
+                        </div>
+                        <div className = "row">
+                            <label> Book's Genre &nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; </label>
+                        <div >
+                        {this.state.book.genre?.map((genre,index)=>{
+                                                    return <li key={index}>{genre}</li>
+                                                })}
+                        </div>   
+                        </div>
+                        <div className = "row">
+                            <label> Book's img URL :&nbsp;&nbsp; </label>
+                            <div> { this.state.book.imgURL }</div>
                         </div>
                         <div className = "row">
                             <label> Book's Location :&nbsp;&nbsp; </label>
