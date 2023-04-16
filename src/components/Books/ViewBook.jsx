@@ -61,7 +61,7 @@ class ViewBook extends Component {
                             <label> Book's Location :&nbsp;&nbsp; </label>
                             <div> { this.state.book.location }</div>
                         </div>
-                        <Link to="/books">
+                        <Link to="/admin/books">
                             <button className='btn btn-primary row'>
                                 Back
                             </button>

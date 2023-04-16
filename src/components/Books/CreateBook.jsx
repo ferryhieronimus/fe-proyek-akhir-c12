@@ -66,11 +66,11 @@ class CreateBookComponent extends Component {
 
         if(this.state.id === '_add'){
             BooksService.createBook(book).then(res => {
-                this.props.navigation('/books');
+                this.props.navigation('/admin/books');
             });
         }else{
             BooksService.updateBook(book, this.state.id).then(res => {
-                this.props.navigation('/books');
+                this.props.navigation('/admin/books');
             })
         } 
     }
@@ -142,7 +142,7 @@ class CreateBookComponent extends Component {
                                         </div>
 
                                             <button className="btn btn-success" onClick={this.saveBook}>Save</button>
-                                        <Link to="/books">
+                                        <Link to="/admin/books">
                                             <button className="btn btn-danger"style={{marginLeft: "10px"}}>Cancel</button>
                                         </Link>
                                     </form>

@@ -8,17 +8,23 @@ const setToken = (newToken) => {
 };
 
 const getUser = async () => {
-  const data = {
-    token: token,
-  };
   const config = {
     headers: { Authorization: token },
   };
-  const response = await axios.post(baseUrl, data, config);
+  const response = await axios.get(baseUrl, config);
+  return response.data;
+};
+
+const getAllUser = async () => {
+  const config = {
+    headers: { Authorization: token },
+  };
+  const response = await axios.get(`${baseUrl}/all`, config);
   return response.data;
 };
 
 export default {
   setToken,
   getUser,
+  getAllUser
 };

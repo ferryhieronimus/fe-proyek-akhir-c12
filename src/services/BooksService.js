@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BOOKS_API_URL = "http://localhost:8080/api/v1/books";
+const BOOKS_API_URL = "http://localhost:8081/api/v1/books";
 
 class BooksService {
     getBook(){

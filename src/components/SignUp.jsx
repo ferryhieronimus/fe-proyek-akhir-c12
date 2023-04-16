@@ -1,165 +1,126 @@
-import * as React from "react";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import { Radio, FormControlLabel, RadioGroup } from "@mui/material";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Link as NavLink } from "react-router-dom";
-import SignUpService from "../services/SignUpService";
+import {
+  Box,
+  FormControl,
+  Input,
+  Stack,
+  VStack,
+  HStack,
+} from "@chakra-ui/react";
 import { useState } from "react";
+import SignUpService from "../services/SignUpService";
+import { Link } from "react-router-dom";
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant='body2'
-      color='text.secondary'
-      align='center'
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color='inherit' href='#'>
-        THE Library App
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-const theme = createTheme();
+export default function Signup() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstname, setFirstName] = useState("");
+  const [lastname, setLastName] = useState("");
 
-export default function SignUp() {
-
-  const [radioValue, setRadioValue] = useState()
+  const isValid = username && password && firstname
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
     try {
-      const user = await SignUpService.signup({
-        firstname: data.get("firstName"),
-        lastname: data.get("lastName"),
-        email: data.get("email"),
-        password: data.get("password"),
-        role: radioValue
+      await SignUpService.signup({
+        firstname,
+        lastname,
+        username,
+        password,
+        role: "USER",
       });
-      alert("BERHASIL REGISTER")
+      alert("BERHASIL REGISTER");
     } catch (error) {
-      alert(error.response.data.message)
+      alert(error.response.data.message);
     }
   };
 
-  const handleChangeRadioValue = (event) => {
-    setRadioValue(event.target.value);
-  };
-
   return (
-    <ThemeProvider theme={theme}>
-      <Container component='main' maxWidth='xs'>
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component='h1' variant='h5'>
-            Sign up
-          </Typography>
-          <Box
-            component='form'
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
-          >
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete='given-name'
-                  name='firstName'
-                  required
-                  fullWidth
-                  id='firstName'
-                  label='First Name'
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id='lastName'
-                  label='Last Name'
-                  name='lastName'
-                  autoComplete='family-name'
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id='email'
-                  label='Email Address'
-                  name='email'
-                  autoComplete='email'
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name='password'
-                  label='Password'
-                  type='password'
-                  id='password'
-                  autoComplete='new-password'
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <RadioGroup row name='use-radio-group' onChange={handleChangeRadioValue} required>
-                  <FormControlLabel
-                    value='USER'
-                    control={<Radio />}
-                    label='User'
+    <VStack
+      minH={"100vh"}
+      align={"center"}
+      justify={"center"}
+      className='bg-[#eeede9]'
+    >
+      <Stack
+        spacing={8}
+        mx={"auto"}
+        maxW={"lg"}
+        py={12}
+        px={6}
+        className='bg-[#f6f5f3] shadow-md'
+        dir=''
+      >
+        <Stack align={"center"}>
+          <div className='font-nunito text-xl font-bold'>Create account</div>
+        </Stack>
+        <Box rounded={"lg"} px={8}>
+          <Stack spacing={4}>
+            <HStack>
+              <Box>
+                <FormControl id='firstName' isRequired>
+                  <Input
+                    type='text'
+                    variant='flushed'
+                    placeholder='First name'
+                    focusBorderColor='gray.400'
+                    value={firstname}
+                    onChange={(e) => setFirstName(e.target.value)}
                   />
-                  <FormControlLabel
-                    value='ADMIN'
-                    control={<Radio />}
-                    label='Admin'
+                </FormControl>
+              </Box>
+              <Box>
+                <FormControl id='lastName'>
+                  <Input
+                    type='text'
+                    variant='flushed'
+                    placeholder='Last name'
+                    focusBorderColor='gray.400'
+                    value={lastname}
+                    onChange={(e) => setLastName(e.target.value)}
                   />
-                </RadioGroup>
-              </Grid>
-            </Grid>
-            <Button
-              type='submit'
-              fullWidth
-              variant='contained'
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign Up
-            </Button>
-            <Grid container justifyContent='flex-end'>
-              <Grid item>
-                <Link as={NavLink} to='/login' variant='body2'>
+                </FormControl>
+              </Box>
+            </HStack>
+            <FormControl id='username' isRequired>
+              <Input
+                type='text'
+                variant='flushed'
+                placeholder='Username'
+                focusBorderColor='gray.400'
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </FormControl>
+            <FormControl id='password' isRequired>
+              <Input
+                type='password'
+                variant='flushed'
+                placeholder='Password'
+                focusBorderColor='gray.400'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </FormControl>
+            <Stack spacing={6} justify={"center"} align={"center"}>
+              <button
+                className='rounded-lg bg-[#c89566] p-2 px-3 mt-4 font-nunito font-medium text-[#f6f5f3] w-1/2 disabled:bg-[#e3c5a8] disabled:cursor-not-allowed'
+                onClick={handleSubmit}
+                disabled={!isValid}
+              >
+                Sign up
+              </button>
+              <Link to='/login'>
+                <div className='font-nunito text-sm text-[#a09f9d] text-center'>
                   Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
-          </Box>
+                </div>
+              </Link>
+            </Stack>
+          </Stack>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
-      </Container>
-    </ThemeProvider>
+      </Stack>
+      <div className='font-nunito text-sm text-[#a09f9d] mt-4'>
+        Privacy Policy • Terms & Conditions
+      </div>
+    </VStack>
   );
 }

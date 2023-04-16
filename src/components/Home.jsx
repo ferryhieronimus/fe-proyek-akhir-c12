@@ -1,5 +1,5 @@
-import React from "react";
-import { UserContext } from "../layouts/RootLayout";
+import React, { useEffect } from "react";
+import { UserContext } from "../layouts/UserLayout";
 import { useContext } from "react";
 import Box from "@mui/material/Box";
 
@@ -7,7 +7,7 @@ export default function Home() {
   const user = useContext(UserContext);
 
   console.log(user);
-  if (user.user.role === "USER") {
+  if (user.role === "USER") {
     return (
       <Box
         sx={{
@@ -18,9 +18,9 @@ export default function Home() {
           flexDirection: "column"
         }}
       >
-        <div>Firstname : {user.user.firstname}</div>
-        <div>Lastname : {user.user.lastname}</div>
-        <div>email : {user.user.username}</div>
+        <div>Firstname : {user.firstname}</div>
+        <div>Lastname : {user.lastname}</div>
+        <div>email : {user.email}</div>
         <div>PINJAM BUKU</div>
       </Box>
     );
@@ -35,9 +35,9 @@ export default function Home() {
           flexDirection: "column"
         }}
       >
-        <div>Firstname : {user.user.firstname}</div>
-        <div>Lastname : {user.user.lastname}</div>
-        <div>email : {user.user.username}</div>
+        <div>Firstname : {user.firstname}</div>
+        <div>Lastname : {user.lastname}</div>
+        <div>email : {user.username}</div>
         <div>ADD BUKU</div>
       </Box>
     );

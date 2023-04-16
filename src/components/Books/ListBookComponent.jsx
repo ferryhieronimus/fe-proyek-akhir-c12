@@ -16,7 +16,7 @@ class ListBookComponent extends Component {
     }
 
     editBook(id){
-        this.props.navigation(`/add-book/${id}`)
+        this.props.navigation(`/admin/add-book/${id}`)
     }
 
     deleteBook(id){
@@ -26,7 +26,7 @@ class ListBookComponent extends Component {
     }
 
     viewBook(id){
-        this.props.navigation(`/view-book/${id}`)
+        this.props.navigation(`/admin/view-book/${id}`)
     }
 
     componentDidMount(){
@@ -40,7 +40,7 @@ class ListBookComponent extends Component {
             <div>
                 <h2 className='text-center py-4'>Books List</h2>
                 <div className='row'>
-                    <Link to="/add-book/_add">
+                    <Link to="/admin/add-book/_add">
                         <button className='btn btn-primary'>
                             Add Book
                         </button>
