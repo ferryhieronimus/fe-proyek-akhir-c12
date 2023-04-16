@@ -54,6 +54,10 @@ class ViewBook extends Component {
                         </div>   
                         </div>
                         <div className = "row">
+                            <label> Book's img URL :&nbsp;&nbsp; </label>
+                            <div> { this.state.book.imgURL }</div>
+                        </div>
+                        <div className = "row">
                             <label> Book's Location :&nbsp;&nbsp; </label>
                             <div> { this.state.book.location }</div>
                         </div>

@@ -19,12 +19,14 @@ class CreateBookComponent extends Component {
             author: '',
             title: '',
             genre: '',
+            imgURL: '',
             location: ''
         }
 
         this.changeAuthorHandler = this.changeAuthorHandler.bind(this);
         this.changeTitleHandler = this.changeTitleHandler.bind(this);
         this.changeGenreHandler = this.changeGenreHandler.bind(this);
+        this.changeimgURLHandler = this.changeimgURLHandler.bind(this);
         this.changeLocationHandler = this.changeLocationHandler.bind(this);
         this.saveBook = this.saveBook.bind(this)
     }
@@ -39,6 +41,7 @@ class CreateBookComponent extends Component {
                     author: book.author,
                     title: book.title,
                     genre: book.genre,
+                    imgURL: book.imgURL,
                     location: book.location
                 });
             });
@@ -47,7 +50,13 @@ class CreateBookComponent extends Component {
 
     saveBook = (e) => {
         e.preventDefault();
-        let book = {author: this.state.author, title: this.state.title, genre: this.state.genre , location: this.state.location};
+        let book = {
+            author: this.state.author, 
+            title: this.state.title, 
+            genre: this.state.genre , 
+            imgURL: this.state.imgURL ,
+            location: this.state.location
+        };
         if (!( book.genre instanceof Array)){
             let listGenre  = book.genre.split(',');
             book.genre = listGenre
@@ -78,15 +87,19 @@ class CreateBookComponent extends Component {
         this.setState({location: event.target.value});
     }
 
+    changeimgURLHandler= (event) => {
+        this.setState({imgURL: event.target.value});
+    }
+
     changeGenreHandler= (event) => {
         this.setState({genre: event.target.value});
     }
 
     getTitle(){
         if(this.state.id === '_add'){
-            return <h3 className="text-center">Add Employee</h3>
+            return <h3 className="text-center">Add Book</h3>
         }else{
-            return <h3 className="text-center">Update Employee</h3>
+            return <h3 className="text-center">Update Book</h3>
         }
     }
 
@@ -116,6 +129,11 @@ class CreateBookComponent extends Component {
                                             <label> Genre: </label>
                                             <input placeholder="Genre" name="genre" className="form-control" 
                                                 value={this.state.genre} onChange={this.changeGenreHandler}/>
+                                        </div>
+                                        <div className = "form-group">
+                                            <label> img url: </label>
+                                            <input placeholder="img url" name="imgURL" className="form-control" 
+                                                value={this.state.imgURL} onChange={this.changeimgURLHandler}/>
                                         </div>
                                         <div className = "form-group">
                                             <label> Location: </label>

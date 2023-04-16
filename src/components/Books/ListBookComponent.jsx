@@ -53,6 +53,7 @@ class ListBookComponent extends Component {
                                 <th> Title</th>
                                 <th> Author</th>
                                 <th> Genre </th>
+                                <th> Img URL</th>
                                 <th> Location</th>
                                 <th> Actions </th>
                             </tr>
@@ -68,6 +69,7 @@ class ListBookComponent extends Component {
                                         <td> {book.genre.map((genre,index)=>{
                                                     return <li key={index}>{genre}</li>
                                                 })}</td>
+                                        <td>{book.imgURL}</td>
                                         <td>{book.location}</td>
                                         <td>
                                             <button onClick={() => this.editBook(book.id)} className="btn btn-info">
