@@ -20,9 +20,9 @@ import {SlSocialYoutube} from "react-icons/sl"
 export default function Footer() {
   return (
     <div className='flex flex-wrap h-48 bg-[#202020] bg-opacity-95 items-center justify-between px-16'>
-      <div className="flex gap-8 items-center">
+      <div className="flex gap-4 items-center">
         <Icon as={IoLibrarySharp} color='white' className="mb-2" boxSize={12} />
-        <div className='font-nunito font-bold text-2xl text-[#fafafa]'>THE Library App</div>
+        <div className='font-nunito font-bold text-2xl text-[#fafafa]'>Chapter & Verse</div>
       </div>
       <div className='flex gap-8'>
         <div className='font-nunito text-md text-[#fafafa]'>Home</div>

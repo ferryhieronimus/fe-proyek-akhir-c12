@@ -22,7 +22,7 @@ export default function Navbar() {
     window.location.reload()
   }
   return (
-    <div className='flex h-16 w-screen bg-[#36303a] items-center justify-between pl-36 pr-40 fixed'>
+    <div className='flex h-16 w-screen bg-[#36303a] items-center justify-between pl-36 pr-40 fixed shadow-md'>
       <div>
         <Icon as={IoLibrarySharp} color="white" boxSize={8} />
       </div>

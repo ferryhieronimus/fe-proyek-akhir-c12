@@ -12,7 +12,7 @@ export default function LandingPage() {
       </div>
       <div className={`h-screen bg-[#eeede9] py-16 px-32 flex items-center justify-center ${!isLoaded?'hidden':'block'}`}>
         <div className='flex flex-col gap-4'>
-          <div className='font-nunito font-bold text-2xl'>THE Library App</div>
+          <div className='font-nunito font-bold text-2xl'>Chapter & Verse</div>
           <div className='font-nunito'>
             Discover, borrow, and explore an endless
             <br></br>
