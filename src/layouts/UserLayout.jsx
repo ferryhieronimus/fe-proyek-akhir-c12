@@ -36,8 +36,7 @@ export default function UserLayout() {
       <UserContext.Provider value={data}>
         {Cookies.get("token") && status !== "loading" && <Navbar />}
         {Cookies.get("token") && status !== "loading" ? (
-          <div className='grid grid-cols-[300px_1fr]'>
-            <Sidebar />
+          <div className='grid grid-cols-[1fr]'>
             <Outlet></Outlet>
           </div>
         ) : (

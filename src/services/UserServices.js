@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "http://34.126.181.230:80/api/v1/auth/user";
+const baseUrl = "http://localhost:8080/api/v1/auth/user";
 
 let token = null;
 
@@ -15,16 +15,25 @@ const getUser = async () => {
   return response.data;
 };
 
-const getAllUser = async () => {
+const editUser = async (payload, username) => {
   const config = {
     headers: { Authorization: token },
   };
-  const response = await axios.get(`${baseUrl}/all`, config);
+  const response = await axios.put(`${baseUrl}/${username}`, payload, config);
+  return response.data;
+};
+
+const deleteUser = async (username) => {
+  const config = {
+    headers: { Authorization: token },
+  };
+  const response = await axios.delete(`${baseUrl}/${username}`, config);
   return response.data;
 };
 
 export default {
   setToken,
   getUser,
-  getAllUser
+  editUser,
+  deleteUser
 };

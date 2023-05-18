@@ -18,6 +18,7 @@ import Login from "./components/Login";
 import Homepage from "./components/Homepage";
 import UserLayout from "./layouts/UserLayout";
 import AdminLayout from "./layouts/AdminLayout";
+import EditProfile from "./components/EditProfile";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,14 @@ const router = createBrowserRouter(
           element={
             <ProtectedRoute>
               <Homepage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/editprofile'
+          element={
+            <ProtectedRoute>
+              <EditProfile />
             </ProtectedRoute>
           }
         />
