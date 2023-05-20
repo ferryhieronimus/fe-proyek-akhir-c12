@@ -1,4 +1,4 @@
-import { Box, FormControl, Input, Stack, VStack } from "@chakra-ui/react";
+import { Box, FormControl, Input, Stack, VStack, useToast  } from "@chakra-ui/react";
 import { useState } from "react";
 import LoginService from "../services/LoginService";
 import Cookies from "js-cookie";
@@ -10,6 +10,8 @@ export default function Login() {
 
   const isValid = username !== "" && password !== ""
 
+  const toast = useToast()
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -20,7 +22,14 @@ export default function Login() {
       Cookies.set("token", JSON.stringify(user.token));
       window.location.reload();
     } catch (error) {
-      alert(error.response.data.message);
+      toast({
+        position: 'top',
+        title: 'Login Failed',
+        description: error.response.data.message,
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      })
     }
   };
 

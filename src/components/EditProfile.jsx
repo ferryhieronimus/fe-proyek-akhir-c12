@@ -14,6 +14,7 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import UserServices from "../services/UserServices";
@@ -24,9 +25,12 @@ export default function EditProfile() {
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [username, setUserName] = useState("");
+  const [oldusername, setOldUserName] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const isValid = password && firstname;
+
+  const toast = useToast();
 
   useEffect(() => {
     getUser();
@@ -38,6 +42,7 @@ export default function EditProfile() {
       setFirstName(user.firstname);
       setLastName(user.lastname);
       setUserName(user.username);
+      setOldUserName(user.username);
     } catch (error) {
       alert(error.response.data.message);
     }
@@ -46,17 +51,33 @@ export default function EditProfile() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await UserServices.editUser(
+      const token = await UserServices.editUser(
         {
           firstname,
           lastname,
+          username,
           password,
         },
-        username
+        oldusername
       );
-      alert("BERHASIL EDIT USER");
+      Cookies.set("token", JSON.stringify(token.token));
+      toast({
+        position: "top",
+        title: "Edit Success",
+        description: "Berhasil Edit Profile",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
     } catch (error) {
-      alert(error.response.data.message);
+      toast({
+        position: "top",
+        title: "Edit Failed",
+        description: error.response.data.message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
     }
   };
 
@@ -66,7 +87,14 @@ export default function EditProfile() {
       Cookies.remove("token");
       window.location.reload();
     } catch (error) {
-      alert(error.response.data.message);
+      toast({
+        position: "top",
+        title: "Delete Failed",
+        description: error.response.data.message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
     }
   };
 
@@ -112,11 +140,21 @@ export default function EditProfile() {
                 onChange={(e) => setLastName(e.target.value)}
               />
             </FormControl>
+            <FormControl id='userName'>
+              <Input
+                type='text'
+                variant='flushed'
+                placeholder='Username'
+                focusBorderColor='gray.400'
+                value={username}
+                onChange={(e) => setUserName(e.target.value)}
+              />
+            </FormControl>
             <FormControl id='password' isRequired>
               <Input
                 type='password'
                 variant='flushed'
-                placeholder='Password'
+                placeholder='Enter your current password'
                 focusBorderColor='gray.400'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

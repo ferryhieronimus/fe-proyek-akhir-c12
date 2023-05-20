@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "http://34.126.181.230:80/api/v1/auth/user";
+const baseUrl = "https://34.126.181.230:443/api/v1/auth/user";
 
 let token = null;
 
@@ -35,5 +35,5 @@ export default {
   setToken,
   getUser,
   editUser,
-  deleteUser
+  deleteUser,
 };

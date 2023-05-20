@@ -5,10 +5,11 @@ import {
   Stack,
   VStack,
   HStack,
+  useToast
 } from "@chakra-ui/react";
 import { useState } from "react";
 import SignUpService from "../services/SignUpService";
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 
 export default function Signup() {
   const [username, setUsername] = useState("");
@@ -17,6 +18,7 @@ export default function Signup() {
   const [lastname, setLastName] = useState("");
 
   const isValid = username && password && firstname;
+  const toast = useToast()
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -28,9 +30,24 @@ export default function Signup() {
         password,
         role: "USER",
       });
-      alert("BERHASIL REGISTER");
+      toast({
+        position: "top",
+        title: "Register Success",
+        description: "Berhasil register",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+      redirect("/login");
     } catch (error) {
-      alert(error.response.data.message);
+      toast({
+        position: "top",
+        title: "Register Failed",
+        description: error.response.data.message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
     }
   };
 
