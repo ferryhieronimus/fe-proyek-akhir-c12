@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PinjamService from '../../services/PinjamService';
 import withNavigateHook from './withNavigateHook';
+import UserServices from '../../services/UserServices';
 
 
 class AdminListComponent extends Component {
@@ -14,8 +15,8 @@ class AdminListComponent extends Component {
 
     }
 
-    UpdatePinjam(userid, pinjamId){
-        PinjamService.updatePinjam(userid, pinjamId).then(res => {
+    UpdatePinjam(userid, pinjamId, pinjam){
+        PinjamService.updatePinjam(userid, pinjamId, pinjam).then(res => {
             this.setState(
                 {
                     pinjam: this.state.pinjam.filter(pinjam => pinjam.pinjamId !== pinjamId)
@@ -40,7 +41,7 @@ class AdminListComponent extends Component {
                         <thead>
                             <tr>
                                 <th> User </th>
-                                <th>Pinjam Id</th>
+                                <th> Pinjam Id </th>
                                 <th> Order Date </th>
                                 <th> Pinjam Detail</th>
                                 <th> Actions </th>
@@ -64,7 +65,7 @@ class AdminListComponent extends Component {
                                                 return <div key={index}>
                                                     {
                                                         !item.status ?
-                                                        <button onClick={() => this.UpdatePinjam(pinjam.userId, pinjam.pinjamId)} className="btn btn-info">Update </button>
+                                                        <button onClick={() => this.UpdatePinjam(pinjam.userId, pinjam.pinjamId, pinjam)} className="btn btn-info">Update </button>
                                                         : null
                                                     }
                                                 
