@@ -2,6 +2,7 @@ import Signup from "./components/Signup";
 import Books from "./components/Books/Books";
 import CreateBook from "./components/Books/CreateBook";
 import ViewBook from "./components/Books/ViewBook";
+import FilterBook from "./components/Books/FilterBook";
 import RootLayout from "./layouts/RootLayout";
 import ProtectedRoute from "./components/Redirect/ProtectedRoute";
 import RedirectRoute from "./components/Redirect/RedirectRoute";
@@ -66,9 +67,24 @@ const router = createBrowserRouter(
             </RedirectRoute>
           }
         />
+        <Route
+          path='/books'
+          element={
+            <RedirectRoute>
+              <Books />
+            </RedirectRoute>
+          }
+        />
+        <Route
+          path='/filter'
+          element={
+            <RedirectRoute>
+              <FilterBook />
+            </RedirectRoute>
+          }
+        />
       </Route>
       <Route path='admin' element={<AdminLayout />}>
-        <Route path='books' element={<Books />} />
         <Route path='add-book/:id' element={<CreateBook />} />
         <Route path='view-book/:id' element={<ViewBook />} />
       </Route>
