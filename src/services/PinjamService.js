@@ -2,6 +2,8 @@ import axios from "axios";
 
 const PINJAM_API_URL = "http://localhost:8082/api/v1/pinjam";
 
+// const admin_token = localStorage.getItem("AT")
+
 const admin_token = localStorage.getItem("AT")
 
 const user_token = localStorage.getItem("KT")
@@ -15,8 +17,9 @@ class PinjamService {
         })
     }
 
-    updatePinjam(bookId){
-        return axios.put(PINJAM_API_URL + '/status/' + bookId,{
+
+    updatePinjam(userId, pinjamId){
+        return axios.put(PINJAM_API_URL + '/status/' + userId + '/' + pinjamId,{
             headers: {
                 'Authorization': `Bearer ${admin_token}`
               },
