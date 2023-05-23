@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PinjamService from '../../services/PinjamService';
 import withNavigateHook from './withNavigateHook';
-import UserServices from '../../services/UserServices';
+
 
 
 class AdminListComponent extends Component {
@@ -68,7 +68,6 @@ class AdminListComponent extends Component {
                                                         <button onClick={() => this.UpdatePinjam(pinjam.userId, pinjam.pinjamId, pinjam)} className="btn btn-info">Update </button>
                                                         : null
                                                     }
-                                                
                                               </div>
                                                 })}
                                         </td>

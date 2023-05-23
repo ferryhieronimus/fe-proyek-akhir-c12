@@ -2,9 +2,17 @@ import axios from "axios";
 
 const BOOKS_API_URL = "http://localhost:8081/api/v1/books";
 
+
+const admin_token = localStorage.getItem("AT")
+
+
 class BooksService {
     getBook(){
-        return axios.get(BOOKS_API_URL);
+        return axios.get(BOOKS_API_URL,{
+            headers: {
+                'Authorization': `Bearer ${admin_token}`
+              },
+        });
     }
 
     createBook(book){
