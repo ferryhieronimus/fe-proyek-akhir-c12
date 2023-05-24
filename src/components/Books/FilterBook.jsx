@@ -1,7 +1,7 @@
 import {VStack, Stack, FormControl, Box, Input, Checkbox, FormHelperText, useToast} from "@chakra-ui/react";
 import {useState} from "react";
 import FilterService from "../../services/FilterService";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 export default function Filter() {
     const [title, setTitle] = useState("");
@@ -13,6 +13,7 @@ export default function Filter() {
 
     const isValid = available || notAvailable;
     const toast = useToast();
+    const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
       event.preventDefault();
@@ -27,19 +28,12 @@ export default function Filter() {
           shelf: shelf.split(' '),
           available: availableArray
         });
-        toast({
-          position: 'top',
-          title: 'Filter Successful',
-          description: '',
-          status: 'success',
-          duration: 3000,
-          isClosable: true,
-        });
+        navigate("/books/filter/result", {state: result});
       } catch (error) {
         toast({
           position: 'top',
           title: 'Filter Failed',
-          description: '',
+          description: 'Please try again later.',
           status: 'error',
           duration: 3000,
           isClosable: true,
@@ -74,7 +68,7 @@ export default function Filter() {
                   <Input
                     type='text'
                     variant='flushed'
-                    placeholder='Title (e.g. "harry potter")'
+                    placeholder='Title ("harry potter")'
                     focusBorderColor='gray.400'
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
@@ -84,7 +78,7 @@ export default function Filter() {
                   <Input
                     type='text'
                     variant='flushed'
-                    placeholder='Author (e.g. "james clear")'
+                    placeholder='Author ("james clear")'
                     focusBorderColor='gray.400'
                     value={author}
                     onChange={(e) => setAuthor(e.target.value)}
@@ -94,7 +88,7 @@ export default function Filter() {
                   <Input
                     type='text'
                     variant='flushed'
-                    placeholder='Genre (e.g. "nonfiction")'
+                    placeholder='Genre ("nonfiction")'
                     focusBorderColor='gray.400'
                     value={genre}
                     onChange={(e) => setGenre(e.target.value)}
@@ -104,7 +98,7 @@ export default function Filter() {
                   <Input
                     type='text'
                     variant='flushed'
-                    placeholder='Shelf (e.g. "recommended")'
+                    placeholder='Shelf ("recommended")'
                     focusBorderColor='gray.400'
                     value={shelf}
                     onChange={(e) => setShelf(e.target.value)}

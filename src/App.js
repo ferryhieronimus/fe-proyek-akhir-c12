@@ -3,6 +3,7 @@ import Books from "./components/Books/Books";
 import CreateBook from "./components/Books/CreateBook";
 import ViewBook from "./components/Books/ViewBook";
 import FilterBook from "./components/Books/FilterBook";
+import FilterResultBook from "./components/Books/FilterResultBook";
 import RootLayout from "./layouts/RootLayout";
 import ProtectedRoute from "./components/Redirect/ProtectedRoute";
 import RedirectRoute from "./components/Redirect/RedirectRoute";
@@ -76,10 +77,18 @@ const router = createBrowserRouter(
           }
         />
         <Route
-          path='/filter'
+          path='/books/filter'
           element={
             <RedirectRoute>
               <FilterBook />
+            </RedirectRoute>
+          }
+        />
+        <Route
+          path='/books/filter/result'
+          element={
+            <RedirectRoute>
+              <FilterResultBook />
             </RedirectRoute>
           }
         />
