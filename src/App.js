@@ -3,7 +3,7 @@ import Books from "./components/Books/Books";
 import CreateBook from "./components/Books/CreateBook";
 import ViewBook from "./components/Books/ViewBook";
 import Pinjam from "./components/Pinjam/Pinjam";
-import UserPinjam from "./components/Pinjam/UserPinjam";  
+import UserPinjam from "./components/Pinjam/UserPinjam";
 import RootLayout from "./layouts/RootLayout";
 import ProtectedRoute from "./components/Redirect/ProtectedRoute";
 import RedirectRoute from "./components/Redirect/RedirectRoute";
@@ -74,20 +74,11 @@ const router = createBrowserRouter(
         <Route path='books' element={<Books />} />
         <Route path='add-book/:id' element={<CreateBook />} />
         <Route path='view-book/:id' element={<ViewBook />} />
-        <Route path='pinjam' 
-            element={
-              <Pinjam />
-              } />
+        <Route path='pinjam' element={<Pinjam />} />
       </Route>
       <Route path='pinjam' element={<AdminLayout />}>
-        <Route  path='me' 
-          element= {
-            <UserPinjam />
-        }/>
-        <Route  path='book/:id' 
-          element= {
-            <BookListComponent />
-        }/>
+        <Route path='me' element={<UserPinjam />} />
+        <Route path='book/:id' element={<BookListComponent />} />
       </Route>
     </Route>
   )

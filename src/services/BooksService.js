@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BOOKS_API_URL = "http://localhost:8081/api/v1/books";
+const BOOKS_API_URL = "http://34.126.125.223/api/v1/books";
 
 
 const admin_token = localStorage.getItem("AT")
