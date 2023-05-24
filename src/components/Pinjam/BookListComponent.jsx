@@ -1,21 +1,29 @@
-import React, { Component } from 'react';
+import React, { Component, useParams } from 'react';
 import PinjamService from '../../services/PinjamService';
 import withNavigateHook from './withNavigateHook';
 
+export const withRouter = Component =>
+props => {
+    let params = useParams();
+    return <Component {...props}
+    params={params} />   
+}
 
 class BookListComponent extends Component {
 
     constructor(props) {
         super(props)
-    
+
+        let {id} = props.params
         this.state = {
+            id: id,
             pinjam: []
         }
 
     }
 
     componentDidMount(){
-        PinjamService.getBookPinjamById().then((res) => {
+        PinjamService.getBookPinjamById(this.state.id).then((res) => {
             this.setState({ pinjam: res.data});
         });
     }

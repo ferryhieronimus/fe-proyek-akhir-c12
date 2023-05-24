@@ -21,6 +21,7 @@ import Homepage from "./components/Homepage";
 import UserLayout from "./layouts/UserLayout";
 import AdminLayout from "./layouts/AdminLayout";
 import EditProfile from "./components/EditProfile";
+import BookListComponent from "./components/Pinjam/BookListComponent";
 
 const queryClient = new QueryClient();
 
@@ -85,6 +86,10 @@ const router = createBrowserRouter(
             <ProtectedRoute>
             <UserPinjam />
             </ProtectedRoute>
+        }/>
+        <Route  path='book/:id' 
+          element= {
+            <BookListComponent />
         }/>
       </Route>
     </Route>

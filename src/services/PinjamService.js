@@ -29,8 +29,8 @@ class PinjamService {
         })
     }
 
-    getBookPinjamById(pinjamId){
-        return axios.get(PINJAM_API_URL + '/book/'  + pinjamId, {
+    getBookPinjamById(bookId){
+        return axios.get(PINJAM_API_URL + '/book/'  + bookId, {
             headers: {
                 'Authorization': `Bearer ${token}`
               },
@@ -40,7 +40,7 @@ class PinjamService {
     createPinjam(pinjam){
         return axios.post(PINJAM_API_URL + '/create', pinjam, {
             headers: {
-                'Authorization': `Bearer ${user_token}`
+                'Authorization': `Bearer ${token}`
               },
         })
     }
