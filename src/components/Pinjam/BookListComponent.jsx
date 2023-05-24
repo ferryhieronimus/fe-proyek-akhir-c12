@@ -1,4 +1,5 @@
-import React, { Component, useParams } from 'react';
+import React, { Component } from 'react';
+import { useParams } from 'react-router-dom';
 import PinjamService from '../../services/PinjamService';
 import withNavigateHook from './withNavigateHook';
 
