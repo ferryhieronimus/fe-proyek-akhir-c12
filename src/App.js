@@ -76,16 +76,13 @@ const router = createBrowserRouter(
         <Route path='view-book/:id' element={<ViewBook />} />
         <Route path='pinjam' 
             element={
-              <ProtectedRoute>
               <Pinjam />
-              </ProtectedRoute>} />
+              } />
       </Route>
       <Route path='pinjam' element={<AdminLayout />}>
         <Route  path='me' 
           element= {
-            <ProtectedRoute>
             <UserPinjam />
-            </ProtectedRoute>
         }/>
         <Route  path='book/:id' 
           element= {
