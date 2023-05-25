@@ -45,6 +45,11 @@ class ListBookComponent extends Component {
                             Add Book
                         </button>
                     </Link>
+                    <Link to="/books/filter">
+                        <button className='btn btn-primary'>
+                            Filter Books
+                        </button>
+                    </Link>
                 </div>
                 <div className='row py-4'>
                     <table className='table table-striped table-bordered'>
