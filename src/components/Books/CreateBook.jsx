@@ -20,7 +20,8 @@ class CreateBookComponent extends Component {
             title: '',
             genre: '',
             imgURL: '',
-            location: ''
+            location: '',
+            avail: '',
         }
 
         this.changeAuthorHandler = this.changeAuthorHandler.bind(this);
@@ -28,6 +29,7 @@ class CreateBookComponent extends Component {
         this.changeGenreHandler = this.changeGenreHandler.bind(this);
         this.changeimgURLHandler = this.changeimgURLHandler.bind(this);
         this.changeLocationHandler = this.changeLocationHandler.bind(this);
+        this.changeAvailHandler = this.changeAvailHandler.bind(this);
         this.saveBook = this.saveBook.bind(this)
     }
 
@@ -42,7 +44,8 @@ class CreateBookComponent extends Component {
                     title: book.title,
                     genre: book.genre,
                     imgURL: book.imgURL,
-                    location: book.location
+                    location: book.location,
+                    avail: book.avail,
                 });
             });
         }
@@ -55,11 +58,16 @@ class CreateBookComponent extends Component {
             title: this.state.title, 
             genre: this.state.genre , 
             imgURL: this.state.imgURL ,
-            location: this.state.location
+            shelf: this.state.location,
+            available: this.state.avail,
         };
         if (!( book.genre instanceof Array)){
             let listGenre  = book.genre.split(',');
             book.genre = listGenre
+        } 
+        if (!( book.author instanceof Array)){
+            let listAuthor  = book.author.split(',');
+            book.genre = listAuthor
         } 
 
         console.log('book =>' + JSON.stringify(book));
@@ -93,6 +101,10 @@ class CreateBookComponent extends Component {
 
     changeGenreHandler= (event) => {
         this.setState({genre: event.target.value});
+    }
+
+    changeAvailHandler= (event) => {
+        this.setState({avail: event.target.value});
     }
 
     getTitle(){
@@ -136,11 +148,15 @@ class CreateBookComponent extends Component {
                                                 value={this.state.imgURL} onChange={this.changeimgURLHandler}/>
                                         </div>
                                         <div className = "form-group">
-                                            <label> Location: </label>
-                                            <input placeholder="Location" name="location" className="form-control" 
+                                            <label> Shelf: </label>
+                                            <input placeholder="Shelf" name="location" className="form-control" 
                                                 value={this.state.location} onChange={this.changeLocationHandler}/>
                                         </div>
-
+                                        <div className = "form-group">
+                                            <input type="checkbox" name="available" className="w-7" 
+                                                value={this.state.avail} onChange={this.changeAvailHandler}/>
+                                            <label> Available </label>
+                                        </div>
                                             <button className="btn btn-success" onClick={this.saveBook}>Save</button>
                                         <Link to="/admin/books">
                                             <button className="btn btn-danger"style={{marginLeft: "10px"}}>Cancel</button>

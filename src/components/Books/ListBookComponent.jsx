@@ -19,12 +19,6 @@ class ListBookComponent extends Component {
         this.props.navigation(`/admin/add-book/${id}`)
     }
 
-    deleteBook(id){
-        BooksService.deleteBook(id).then(res => {
-            this.setState({books: this.state.books.filter(book => book.id !== id)})
-        });
-    }
-
     viewBook(id){
         this.props.navigation(`/admin/view-book/${id}`)
     }
@@ -45,11 +39,6 @@ class ListBookComponent extends Component {
                             Add Book
                         </button>
                     </Link>
-                    <Link to="/books/filter">
-                        <button className='btn btn-primary'>
-                            Filter Books
-                        </button>
-                    </Link>
                 </div>
                 <div className='row py-4'>
                     <table className='table table-striped table-bordered'>
@@ -59,7 +48,8 @@ class ListBookComponent extends Component {
                                 <th> Author</th>
                                 <th> Genre </th>
                                 <th> Img URL</th>
-                                <th> Location</th>
+                                <th> Shelf</th>
+                                <th> Available</th>
                                 <th> Actions </th>
                             </tr>
                         </thead>
@@ -75,12 +65,12 @@ class ListBookComponent extends Component {
                                                     return <li key={index}>{genre}</li>
                                                 })}</td>
                                         <td>{book.imgURL}</td>
-                                        <td>{book.location}</td>
+                                        <td>{book.shelf}</td>
+                                        <td>{book.avail}</td>
                                         <td>
-                                            <button onClick={() => this.editBook(book.id)} className="btn btn-info">
+                                            <button onClick={() => this.editBook(book.id)} className="btn btn-primary">
                                                 Update 
                                             </button>
-                                            <button style={{marginLeft: "10px"}} onClick={() => this.deleteBook(book.id)} className="btn btn-danger">Delete </button>
                                             <button style={{marginLeft: "10px"}} onClick={() => this.viewBook(book.id)} className="btn btn-info">View </button>
                                         </td>
                                     </tr>

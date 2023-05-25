@@ -58,8 +58,12 @@ class ViewBook extends Component {
                             <div> { this.state.book.imgURL }</div>
                         </div>
                         <div className = "row">
-                            <label> Book's Location :&nbsp;&nbsp; </label>
+                            <label> Book's Shelf :&nbsp;&nbsp; </label>
                             <div> { this.state.book.location }</div>
+                        </div>
+                        <div className = "row">
+                            <label> Book's Avaibility :&nbsp;&nbsp; </label>
+                            <div> { this.state.book.avail }</div>
                         </div>
                         <Link to="/admin/books">
                             <button className='btn btn-primary row'>

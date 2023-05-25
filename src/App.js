@@ -24,6 +24,7 @@ import UserLayout from "./layouts/UserLayout";
 import AdminLayout from "./layouts/AdminLayout";
 import EditProfile from "./components/EditProfile";
 import BookListComponent from "./components/Pinjam/BookListComponent";
+import ListBookComponent from "./components/Books/ListBookComponent";
 
 const queryClient = new QueryClient();
 
@@ -97,6 +98,7 @@ const router = createBrowserRouter(
         />
       </Route>
       <Route path='admin' element={<AdminLayout />}>
+        <Route path='books' element={<ListBookComponent />} />
         <Route path='add-book/:id' element={<CreateBook />} />
         <Route path='view-book/:id' element={<ViewBook />} />
         <Route path='pinjam' element={<Pinjam />} />
