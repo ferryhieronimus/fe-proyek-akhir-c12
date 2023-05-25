@@ -30,6 +30,13 @@ class BookListComponent extends Component {
     }
 
     render() {
+        const { pinjam } = this.state;
+        
+        // Check if the book object is empty or null
+        if (!pinjam || Object.keys(pinjam).length === 0) {
+            return <div>Buku tidak tersedia</div>;
+        }
+
         return (
             <div>
                 <h2 className='text-center py-4'>Pinjam List</h2>

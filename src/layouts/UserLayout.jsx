@@ -15,6 +15,7 @@ export default function UserLayout() {
     const tokenJSON = Cookies.get("token");
     if (tokenJSON) {
       const token = JSON.parse(tokenJSON);
+      localStorage.setItem('AT', token);
       UserServices.setToken(token);
       return UserServices.getUser();
     }
