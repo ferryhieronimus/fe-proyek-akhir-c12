@@ -7,7 +7,6 @@ import { useQuery } from "react-query";
 import Navbar from "../components/Headers/Navbar";
 import Loader from "../components/Loader/Loader";
 import Footer from "../components/Footers/Footer";
-import Sidebar from "../components/Sidebar/Sidebar";
 
 export const UserContext = createContext();
 
@@ -16,6 +15,7 @@ export default function UserLayout() {
     const tokenJSON = Cookies.get("token");
     if (tokenJSON) {
       const token = JSON.parse(tokenJSON);
+      localStorage.setItem('AT', token);
       UserServices.setToken(token);
       return UserServices.getUser();
     }

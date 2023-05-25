@@ -1,26 +1,42 @@
 import React, { Component } from 'react';
+import { useParams } from 'react-router-dom';
 import PinjamService from '../../services/PinjamService';
 import withNavigateHook from './withNavigateHook';
 
+export const withRouter = Component =>
+props => {
+    let params = useParams();
+    return <Component {...props}
+    params={params} />   
+}
 
 class BookListComponent extends Component {
 
     constructor(props) {
         super(props)
-    
+
+        let {id} = props.params
         this.state = {
+            id: id,
             pinjam: []
         }
 
     }
 
     componentDidMount(){
-        PinjamService.getBookPinjamById().then((res) => {
+        PinjamService.getBookPinjamById(this.state.id).then((res) => {
             this.setState({ pinjam: res.data});
         });
     }
 
     render() {
+        const { pinjam } = this.state;
+        
+        // Check if the book object is empty or null
+        if (!pinjam || Object.keys(pinjam).length === 0) {
+            return <div>Buku tidak tersedia</div>;
+        }
+
         return (
             <div>
                 <h2 className='text-center py-4'>Pinjam List</h2>
@@ -43,7 +59,6 @@ class BookListComponent extends Component {
                                         <td>{pinjam.pinjamDate}</td>
                                         <td> {pinjam.pinjamDetailsData.map((item, index)=>{
                                                     return <div key={index}>
-                                                    <p>Book ID: {item.bookId}</p>
                                                     <p>Status: {item.status ? 'Not Accepted' : 'Accepted'}</p>
                                                   </div>
                                                 })}</td>

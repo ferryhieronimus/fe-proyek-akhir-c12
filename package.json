@@ -6,6 +6,7 @@
     "@chakra-ui/react": "^2.5.5",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@headlessui/react": "^1.7.14",
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.13",
     "@tailwindcss/line-clamp": "^0.4.4",

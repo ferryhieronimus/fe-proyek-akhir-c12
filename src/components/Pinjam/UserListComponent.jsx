@@ -44,7 +44,7 @@ class UserListComponent extends Component {
                                         <td> {pinjam.pinjamDetailsData.map((item, index)=>{
                                                     return <div key={index}>
                                                     <p>Book ID: {item.bookId}</p>
-                                                    <p>Status: {item.status ? 'Not Accepted' : 'Accepted'}</p>
+                                                    <p>Status: {item.status ? 'Accepted' : 'Not Accepted'}</p>
                                                   </div>
                                                 })}</td>
                                     </tr>

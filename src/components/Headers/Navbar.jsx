@@ -29,17 +29,14 @@ export default function Navbar() {
         <Icon as={IoLibrarySharp} color='white' boxSize={8} />
       </Link>
       <div className='flex gap-8'>
-        <div className='font-nunito text-md text-[#fafafa]'>Browse</div>
-        <div className='font-nunito text-md text-[#fafafa]'>My Books</div>
+        <Link to='/'>
+          <div className='font-nunito text-md text-[#fafafa]'>Browse</div>
+        </Link>
+        <Link to='/pinjam/me'>
+          <div className='font-nunito text-md text-[#fafafa]'>My Books</div>
+        </Link>
       </div>
       <div className='flex gap-4 items-center'>
-        <InputGroup>
-          <InputLeftElement
-            pointerEvents='none'
-            children={<FiSearch color='gray.300' />}
-          />
-          <Input type='text' placeholder='Title...' bg={"gray.200"} />
-        </InputGroup>
         <Menu>
           <MenuButton>
             <Icon as={AiOutlineUser} color='white' boxSize={8} />

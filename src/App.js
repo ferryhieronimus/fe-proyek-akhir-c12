@@ -4,6 +4,8 @@ import CreateBook from "./components/Books/CreateBook";
 import ViewBook from "./components/Books/ViewBook";
 import FilterBook from "./components/Books/FilterBook";
 import FilterResultBook from "./components/Books/FilterResultBook";
+import Pinjam from "./components/Pinjam/Pinjam";
+import UserPinjam from "./components/Pinjam/UserPinjam";
 import RootLayout from "./layouts/RootLayout";
 import ProtectedRoute from "./components/Redirect/ProtectedRoute";
 import RedirectRoute from "./components/Redirect/RedirectRoute";
@@ -21,6 +23,7 @@ import Homepage from "./components/Homepage";
 import UserLayout from "./layouts/UserLayout";
 import AdminLayout from "./layouts/AdminLayout";
 import EditProfile from "./components/EditProfile";
+import BookListComponent from "./components/Pinjam/BookListComponent";
 
 const queryClient = new QueryClient();
 
@@ -96,6 +99,11 @@ const router = createBrowserRouter(
       <Route path='admin' element={<AdminLayout />}>
         <Route path='add-book/:id' element={<CreateBook />} />
         <Route path='view-book/:id' element={<ViewBook />} />
+        <Route path='pinjam' element={<Pinjam />} />
+      </Route>
+      <Route path='pinjam' element={<AdminLayout />}>
+        <Route path='me' element={<UserPinjam />} />
+        <Route path='book/:id' element={<BookListComponent />} />
       </Route>
     </Route>
   )
