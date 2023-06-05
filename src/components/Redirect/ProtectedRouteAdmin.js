@@ -17,6 +17,9 @@ export default function ProtectedRouteAdmin ({ children }) {
     if (!user) {
       return <Navigate to="/get-started" replace />;
     }
+    else if (user.role !== "STAFF"){
+      return <Navigate to="/get-started" replace />;
+    }
     
     return children;
 }

@@ -98,10 +98,10 @@ const router = createBrowserRouter(
           }
         />
       </Route>
-      <Route path='admin' element={<AdminLayout />}>
+      <Route path='admin' element={<AdminLayout/>}>
         <Route path='books' element={<ProtectedRouteAdmin><ListBookComponent /></ProtectedRouteAdmin>} />
-        <Route path='add-book/:id' element={<CreateBook />} />
-        <Route path='view-book/:id' element={<ViewBook />} />
+        <Route path='add-book/:id' element={<ProtectedRouteAdmin><CreateBook/></ProtectedRouteAdmin>} />
+        <Route path='view-book/:id' element={<ProtectedRouteAdmin><ViewBook /></ProtectedRouteAdmin>} />
         <Route path='pinjam' element={<Pinjam />} />
       </Route>
       <Route path='pinjam' element={<AdminLayout />}>

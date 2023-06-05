@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import BooksService from '../../services/BooksService';
 import withNavigateHook from './withNavigateHook';
+import {useToast} from "@chakra-ui/react";
 
 export const withRouter = Component =>
     props => {
@@ -69,9 +70,9 @@ class CreateBookComponent extends Component {
             let listAuthor = book.author.split(',');
             book.author = listAuthor
         }
-
         console.log('book =>' + JSON.stringify(book));
 
+        try{
         if (this.state.id === '_add') {
             BooksService.createBook(book).then(res => {
                 this.props.navigation('/admin/books');
@@ -81,6 +82,17 @@ class CreateBookComponent extends Component {
                 this.props.navigation('/admin/books');
             })
         }
+        }catch (error) {
+            const toast = useToast();
+            toast({
+              position: 'top',
+              title: 'Filter Failed',
+              description: 'Please try again later.',
+              status: 'error',
+              duration: 3000,
+              isClosable: true,
+            })
+          }
     }
 
     changeAuthorHandler = (event) => {
@@ -110,9 +122,9 @@ class CreateBookComponent extends Component {
 
     getTitle() {
         if (this.state.id === '_add') {
-            return <h3 className="text-center">Add Book</h3>
+            return <h1 className="text-center p-4"><b>Add Book</b></h1>
         } else {
-            return <h3 className="text-center">Update Book</h3>
+            return <h1 className="text-center p-4"><b>Update Book</b></h1>
         }
     }
 
@@ -122,41 +134,41 @@ class CreateBookComponent extends Component {
                 <br></br>
                 <div className="container">
                     <div className="row">
-                        <div className="card col-md-6 offset-md-3 offset-md-3">
+                        <div className="card col-md-6 offset-md-3 offset-md-3 bg-[#eeede9]">
                             {
                                 this.getTitle()
                             }
                             <div className="card-body">
                                 <form>
                                     <div className="form-group">
-                                        <label> Author: </label>
+                                        <label><b> Author(s): </b> <span><p><i>separate with (,)</i></p></span></label>
                                         <input placeholder="Author" name="author" className="form-control"
                                             value={this.state.author} onChange={this.changeAuthorHandler} />
                                     </div>
                                     <div className="form-group">
-                                        <label> Title: </label>
+                                        <label><b> Title: </b></label>
                                         <input placeholder="Title" name="title" className="form-control"
                                             value={this.state.title} onChange={this.changeTitleHandler} />
                                     </div>
                                     <div className="form-group">
-                                        <label> Genre: </label>
+                                        <label><b> Genre(s): </b><span><p><i>separate with (,)</i></p></span></label>
                                         <input placeholder="Genre" name="genre" className="form-control"
                                             value={this.state.genre} onChange={this.changeGenreHandler} />
                                     </div>
                                     <div className="form-group">
-                                        <label> img url: </label>
+                                        <label><b> Img url: </b></label>
                                         <input placeholder="img url" name="imgURL" className="form-control"
                                             value={this.state.imgURL} onChange={this.changeimgURLHandler} />
                                     </div>
                                     <div className="form-group">
-                                        <label> Shelf: </label>
+                                        <label><b> Shelf: </b></label>
                                         <input placeholder="Shelf" name="shelf" className="form-control"
                                             value={this.state.shelf} onChange={this.changeShelfHandler} />
                                     </div>
                                     <div className="form-group">
                                         <input type="checkbox" name="available" className="w-7"
                                          onChange={this.changeAvailableHandler} checked={this.state.available} />
-                                        <label> available
+                                        <label><b> Available </b>
                                         </label>
                                     </div>
                                     <button className="btn btn-success" onClick={this.saveBook}>Save</button>
@@ -167,7 +179,6 @@ class CreateBookComponent extends Component {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         );
