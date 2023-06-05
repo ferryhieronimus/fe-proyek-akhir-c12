@@ -60,13 +60,15 @@ class ListBookComponent extends Component {
                                     book => 
                                     <tr key = {book.id} >
                                         <td>{book.title}</td>
-                                        <td>{book.author}</td>
+                                        <td> {book.author.map((author,index)=>{
+                                                    return <li key={index}>{author}</li>
+                                                })}</td>
                                         <td> {book.genre.map((genre,index)=>{
                                                     return <li key={index}>{genre}</li>
                                                 })}</td>
                                         <td>{book.imgURL}</td>
                                         <td>{book.shelf}</td>
-                                        <td>{book.avail}</td>
+                                        <td>{book.available ? 'Available' : 'Not Available'}</td>
                                         <td>
                                             <button onClick={() => this.editBook(book.id)} className="btn btn-primary">
                                                 Update 

@@ -51,7 +51,11 @@ export default function Homepage() {
             <div className='font-nunito truncate text-[#5b5b59]'>
               {book.author}
             </div>
-            <button onClick={() => saveDataToBackend(book.id)} className="btn btn-info">Borrow book</button>
+            {
+              book.available ?
+              <button onClick={() => saveDataToBackend(book.id)} className="btn btn-info">Borrow book</button>
+              : null
+            }
           </div>
         ))}
       </div>

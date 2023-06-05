@@ -8,6 +8,7 @@ import Pinjam from "./components/Pinjam/Pinjam";
 import UserPinjam from "./components/Pinjam/UserPinjam";
 import RootLayout from "./layouts/RootLayout";
 import ProtectedRoute from "./components/Redirect/ProtectedRoute";
+import ProtectedRouteAdmin from "./components/Redirect/ProtectedRouteAdmin";
 import RedirectRoute from "./components/Redirect/RedirectRoute";
 import {
   createBrowserRouter,
@@ -98,7 +99,7 @@ const router = createBrowserRouter(
         />
       </Route>
       <Route path='admin' element={<AdminLayout />}>
-        <Route path='books' element={<ListBookComponent />} />
+        <Route path='books' element={<ProtectedRouteAdmin><ListBookComponent /></ProtectedRouteAdmin>} />
         <Route path='add-book/:id' element={<CreateBook />} />
         <Route path='view-book/:id' element={<ViewBook />} />
         <Route path='pinjam' element={<Pinjam />} />

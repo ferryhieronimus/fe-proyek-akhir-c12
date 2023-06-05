@@ -39,7 +39,9 @@ class ViewBook extends Component {
                     <div className = "card-body">
                         <div className = "row">
                             <label> Book's Author &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; </label>
-                            <div> { this.state.book.author }</div>
+                            <div> {this.state.book.author?.map((author,index)=>{
+                                                    return <li key={index}>{author}</li>
+                                                })}</div>
                         </div>
                         <div className = "row">
                             <label> Book's Title  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; </label>
@@ -63,7 +65,7 @@ class ViewBook extends Component {
                         </div>
                         <div className = "row">
                             <label> Book's Avaibility :&nbsp;&nbsp; </label>
-                            <div> { this.state.book.avail }</div>
+                            <div> { this.state.book.available ? 'Available' : 'Not Available' }</div>
                         </div>
                         <Link to="/admin/books">
                             <button className='btn btn-primary row'>
