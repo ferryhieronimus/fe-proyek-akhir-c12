@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Input,
   InputGroup,
@@ -17,12 +17,25 @@ import { Icon } from "@chakra-ui/react";
 import { AiOutlineUser } from "react-icons/ai";
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
+import UserServices from "../../services/UserServices";
 
 export default function Navbar() {
+  const [user, setUser] = useState()
+
+  const fecthUser = async () => {
+    const user = await UserServices.getUser()
+    setUser(user)
+  };
+
   const handleLogout = () => {
     Cookies.remove("token");
     window.location.reload();
   };
+
+  useEffect(() => {
+    fecthUser()
+  }, [])
+
   return (
     <div className='flex h-16 w-screen bg-[#36303a] items-center justify-between pl-36 pr-40 fixed shadow-md'>
       <Link to='/'>
@@ -35,6 +48,20 @@ export default function Navbar() {
         <Link to='/pinjam/me'>
           <div className='font-nunito text-md text-[#fafafa]'>My Books</div>
         </Link>
+        { user && user.role == "STAFF" &&
+          <>
+            <Link to='/admin/books'>
+              <div className='font-nunito text-md text-[#fafafa]'>
+                Manage Books
+              </div>
+            </Link>
+            <Link to='/admin/pinjam'>
+              <div className='font-nunito text-md text-[#fafafa]'>
+                Manage Lending
+              </div>
+            </Link>
+          </>
+        }
       </div>
       <div className='flex gap-4 items-center'>
         <Menu>
