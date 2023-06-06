@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import PinjamService from '../../services/PinjamService';
-import PinjamFooter from './PinjamFooter';
-import PinjamHeader from './PinjamHeader';
 
 
 const BookListComponent = () => {
@@ -21,7 +19,7 @@ const BookListComponent = () => {
     }, [id]);
 
     return (
-        <div className='p-10 bg-[#eeede9]'>
+        <div className='p-10 bg-[#eeede9] min-h-screen' >
         <div className='container'>
         </div>
         <div>

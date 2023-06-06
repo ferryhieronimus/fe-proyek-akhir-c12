@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PinjamService from '../../services/PinjamService';
 import withNavigateHook from './withNavigateHook';
-import Navbar from '../Headers/Navbar';
 
 
 
@@ -34,7 +33,7 @@ class AdminListComponent extends Component {
 
     render() {
         return (
-            <div className='p-10 bg-[#eeede9]'>
+            <div className='p-10 bg-[#eeede9] min-h-screen'>
 
                 <h2 className='text-center py-4 display-4'>Pinjam List</h2>
 
