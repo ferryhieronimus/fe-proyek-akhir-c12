@@ -102,8 +102,8 @@ const router = createBrowserRouter(
         <Route path='books' element={<ProtectedRouteAdmin><ListBookComponent /></ProtectedRouteAdmin>} />
         <Route path='add-book/:id' element={<ProtectedRouteAdmin><CreateBook/></ProtectedRouteAdmin>} />
         <Route path='view-book/:id' element={<ProtectedRouteAdmin><ViewBook /></ProtectedRouteAdmin>} />
-        <Route path='pinjam/book/:id' element={<BookListComponent/>}/>
-        <Route path='pinjam' element={<Pinjam />} />
+        <Route path='pinjam/book/:id' element={<ProtectedRouteAdmin><BookListComponent/></ProtectedRouteAdmin>} />
+        <Route path='pinjam' element={<ProtectedRouteAdmin><Pinjam /></ProtectedRouteAdmin>} />
       </Route>
       <Route path='pinjam' element={<AdminLayout />}>
         <Route path='me' element={<UserPinjam />} />

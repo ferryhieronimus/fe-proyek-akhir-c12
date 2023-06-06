@@ -9,9 +9,7 @@ class Pinjam extends Component {
         return (
             <div>
                 <Navbar/>
-                <div className='container'>
-                    <UserListComponent/>
-                </div>
+                <UserListComponent/>
             </div>
         );
     }

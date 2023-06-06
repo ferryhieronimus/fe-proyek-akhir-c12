@@ -22,11 +22,11 @@ class UserListComponent extends Component {
 
     render() {
         return (
-            <div>
-                <h1 className='text-center py-3'>Pinjam List</h1>
+            <div className='p-10 bg-[#eeede9] min-h-screen'>
+                <h1 className='text-center py-4 display-4'>Pinjam List</h1>
 
-                <div className='row py-4'>
-                    <table className='table table-striped table-bordered'>
+                <div className='row py-4  p-10 bg-[#eeede9]' >
+                    <table  className='table table-striped table-bordered'>
                         <thead>
                             <tr>
                                 <th style={{ textAlign: 'center' }}> PinjamId </th>

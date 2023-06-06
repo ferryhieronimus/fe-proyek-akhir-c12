@@ -21,12 +21,11 @@ const BookListComponent = () => {
     }, [id]);
 
     return (
-        <div>
-        <PinjamHeader/>
+        <div className='p-10 bg-[#eeede9]'>
         <div className='container'>
         </div>
         <div>
-            <h2 className="text-center py-4">Pinjam List</h2>
+            <h2 className='text-center py-4 display-4'>Pinjam List</h2>
 
             <div className="row py-4">
                 <table className="table table-striped table-bordered" >
@@ -54,9 +53,6 @@ const BookListComponent = () => {
                     </tbody>
                 </table>
             </div>
-        </div>
-        <div className='footer'>
-            <PinjamFooter/>
         </div>
 
         </div>        

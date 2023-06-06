@@ -7,13 +7,7 @@ class Pinjam extends Component {
     render() {
         return (
             <div>
-                <PinjamHeader/>
-                <div className='container'>
-                    <AdminListComponent/>
-                </div>
-                <div className='footer'>
-                    <PinjamFooter/>
-                </div>
+                <AdminListComponent/>
             </div>
         );
     }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PinjamService from '../../services/PinjamService';
 import withNavigateHook from './withNavigateHook';
+import Navbar from '../Headers/Navbar';
 
 
 
@@ -33,8 +34,9 @@ class AdminListComponent extends Component {
 
     render() {
         return (
-            <div>
-                <h2 className='text-center py-4'>Pinjam List</h2>
+            <div className='p-10 bg-[#eeede9]'>
+
+                <h2 className='text-center py-4 display-4'>Pinjam List</h2>
 
                 <div className='row py-4'>
                     <table className='table table-striped table-bordered'>
@@ -65,7 +67,7 @@ class AdminListComponent extends Component {
                                                 return <div key={index}>
                                                     {
                                                         !item.status ?
-                                                        <button onClick={() => this.UpdatePinjam(pinjam.userId, pinjam.pinjamId, pinjam)} className="btn btn-info">Update </button>
+                                                        <button onClick={() => this.UpdatePinjam(pinjam.userId, pinjam.pinjamId, pinjam)} className="btn btn-dark">Update </button>
                                                         : null
                                                     }
                                               </div>
