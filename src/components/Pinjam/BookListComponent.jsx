@@ -1,76 +1,66 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import PinjamService from '../../services/PinjamService';
-import withNavigateHook from './withNavigateHook';
+import PinjamFooter from './PinjamFooter';
+import PinjamHeader from './PinjamHeader';
 
-export const withRouter = Component =>
-props => {
-    let params = useParams();
-    return <Component {...props}
-    params={params} />   
-}
 
-class BookListComponent extends Component {
+const BookListComponent = () => {
+    const { id } = useParams(); // Retrieve the 'id' parameter from the URL
 
-    constructor(props) {
-        super(props)
+    const [pinjam, setPinjam] = useState([]);
 
-        let {id} = props.params
-        this.state = {
-            id: id,
-            pinjam: []
-        }
+    useEffect(() => {
+        PinjamService.getBookPinjamById(id)
+            .then((res) => {
+                setPinjam(res.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, [id]);
 
-    }
+    return (
+        <div>
+        <PinjamHeader/>
+        <div className='container'>
+        </div>
+        <div>
+            <h2 className="text-center py-4">Pinjam List</h2>
 
-    componentDidMount(){
-        PinjamService.getBookPinjamById(this.state.id).then((res) => {
-            this.setState({ pinjam: res.data});
-        });
-    }
-
-    render() {
-        const { pinjam } = this.state;
-        
-        // Check if the book object is empty or null
-        if (!pinjam || Object.keys(pinjam).length === 0) {
-            return <div>Buku tidak tersedia</div>;
-        }
-
-        return (
-            <div>
-                <h2 className='text-center py-4'>Pinjam List</h2>
-
-                <div className='row py-4'>
-                    <table className='table table-striped table-bordered'>
-                        <thead>
-                            <tr>
-                                <th> PinjamId </th>
-                                <th> PinjamDate </th>
-                                <th> pinjamDetailsData </th>
+            <div className="row py-4">
+                <table className="table table-striped table-bordered" >
+                    <thead>
+                        <tr>
+                            <th style={{ textAlign: 'center' }}>PinjamId</th>
+                            <th style={{ textAlign: 'center' }}>PinjamDate</th>
+                            <th style={{ textAlign: 'center' }}>PinjamDetailsData</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {pinjam.map((pinjam) => (
+                            <tr key={pinjam.pinjamId}>
+                                <td style={{ textAlign: 'center' }}>{pinjam.pinjamId}</td>
+                                <td style={{ textAlign: 'center' }}>{pinjam.pinjamDate}</td>
+                                <td style={{ textAlign: 'center' }}>
+                                    {pinjam.pinjamDetailsData.map((item, index) => (
+                                        <div key={index}>
+                                            <p style={{ textAlign: 'center' }}>Status: {item.status ? 'Not Accepted' : 'Accepted'}</p>
+                                        </div>
+                                    ))}
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                this.state.pinjam.map(
-                                    pinjam => 
-                                    <tr key = {pinjam.pinjamId} >
-                                        <td>{pinjam.pinjamId}</td>
-                                        <td>{pinjam.pinjamDate}</td>
-                                        <td> {pinjam.pinjamDetailsData.map((item, index)=>{
-                                                    return <div key={index}>
-                                                    <p>Status: {item.status ? 'Not Accepted' : 'Accepted'}</p>
-                                                  </div>
-                                                })}</td>
-                                    </tr>
-                                )
-                            }
-                        </tbody>
-                    </table>
-                </div>
+                        ))}
+                    </tbody>
+                </table>
             </div>
-        );
-    }
-}
+        </div>
+        <div className='footer'>
+            <PinjamFooter/>
+        </div>
 
-export default withNavigateHook(BookListComponent);
+        </div>        
+    );
+};
+
+export default BookListComponent;

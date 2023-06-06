@@ -29,9 +29,9 @@ class UserListComponent extends Component {
                     <table className='table table-striped table-bordered'>
                         <thead>
                             <tr>
-                                <th> PinjamId </th>
-                                <th> PinjamDate </th>
-                                <th> pinjamDetailsData </th>
+                                <th style={{ textAlign: 'center' }}> PinjamId </th>
+                                <th style={{ textAlign: 'center' }}> PinjamDate </th>
+                                <th style={{ textAlign: 'center' }}> PinjamDetailsData </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -39,8 +39,8 @@ class UserListComponent extends Component {
                                 this.state.pinjam.map(
                                     pinjam => 
                                     <tr key = {pinjam.pinjamId} >
-                                        <td>{pinjam.pinjamId}</td>
-                                        <td>{pinjam.pinjamDate}</td>
+                                        <td style={{ textAlign: 'center' }}>{pinjam.pinjamId}</td>
+                                        <td style={{ textAlign: 'center' }}>{pinjam.pinjamDate}</td>
                                         <td> {pinjam.pinjamDetailsData.map((item, index)=>{
                                                     return <div key={index}>
                                                     <p>Book ID: {item.bookId}</p>

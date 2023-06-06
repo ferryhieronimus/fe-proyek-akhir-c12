@@ -40,11 +40,11 @@ class AdminListComponent extends Component {
                     <table className='table table-striped table-bordered'>
                         <thead>
                             <tr>
-                                <th> User </th>
-                                <th> Pinjam Id </th>
-                                <th> Order Date </th>
-                                <th> Pinjam Detail</th>
-                                <th> Actions </th>
+                                <th style={{ textAlign: 'center' }}> User </th>
+                                <th style={{ textAlign: 'center' }}> Pinjam Id </th>
+                                <th style={{ textAlign: 'center' }}> Order Date </th>
+                                <th style={{ textAlign: 'center' }}> Pinjam Detail</th>
+                                <th style={{ textAlign: 'center' }}> Actions </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,9 +52,9 @@ class AdminListComponent extends Component {
                                 this.state.pinjam.map(
                                     pinjam => 
                                     <tr key = {pinjam.pinjamId} >
-                                        <td>{pinjam.userId}</td>
-                                        <td>{pinjam.pinjamId}</td>
-                                        <td>{pinjam.pinjamDate}</td>
+                                        <td style={{ textAlign: 'center' }}>{pinjam.userId}</td>
+                                        <td style={{ textAlign: 'center' }}>{pinjam.pinjamId}</td>
+                                        <td style={{ textAlign: 'center' }}>{pinjam.pinjamDate}</td>
                                         <td> {pinjam.pinjamDetailsData.map((item, index)=>{
                                                     return <div key={index}>
                                                     <p>Book ID: {item.bookId}</p>
