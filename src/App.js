@@ -76,25 +76,19 @@ const router = createBrowserRouter(
         <Route
           path='/books'
           element={
-            <RedirectRoute>
               <Books />
-            </RedirectRoute>
           }
         />
         <Route
           path='/books/filter'
           element={
-            <RedirectRoute>
               <FilterBook />
-            </RedirectRoute>
           }
         />
         <Route
           path='/books/filter/result'
           element={
-            <RedirectRoute>
               <FilterResultBook />
-            </RedirectRoute>
           }
         />
       </Route>

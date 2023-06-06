@@ -45,6 +45,9 @@ export default function Navbar() {
         <Link to='/'>
           <div className='font-nunito text-md text-[#fafafa]'>Browse</div>
         </Link>
+        <Link to='/books/filter'>
+          <div className='font-nunito text-md text-[#fafafa]'>Filter</div>
+        </Link>
         <Link to='/pinjam/me'>
           <div className='font-nunito text-md text-[#fafafa]'>My Books</div>
         </Link>

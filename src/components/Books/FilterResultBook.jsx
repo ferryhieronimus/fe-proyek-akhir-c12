@@ -22,7 +22,7 @@ export default function FilterResult() {
               Filter Again
             </button>
           </Link>
-          <Link to='/books'>
+          <Link to='/'>
             <button className='rounded-lg bg-[#f6f5f3] p-2 px-3 mt-4 font-nunito font-medium text-[#c89566] border'>
               Return
             </button>
